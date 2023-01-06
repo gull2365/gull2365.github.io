@@ -1,8 +1,12 @@
+import { ProfileImage } from 'components/Main/profileimage'
 import React, { FunctionComponent } from 'react'
-import Text from 'components/text'
 
 const IndexPage: FunctionComponent = function () {
-  return <Text text="Home" />
+  return (
+    <div>
+      <ProfileImage />
+    </div>
+  )
 }
 
 export default IndexPage
