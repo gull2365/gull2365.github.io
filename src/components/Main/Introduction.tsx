@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from 'react'
 import styled from '@emotion/styled'
-import ProfileImage from 'components/Main/ProfileImage'
+import ProfileImage from './profileimage'
 
 const Background = styled.div`
   width: 100%;
