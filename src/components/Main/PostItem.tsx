@@ -94,8 +94,8 @@ const PostItem: FunctionComponent<PostItemProps> = function ({
         <Title>{title}</Title>
         <Date>{date}</Date>
         <Category>
-          {categories.map(category => (
-            <CategoryItem key={category}>{category}</CategoryItem>
+          {categories.map(item => (
+            <CategoryItem key={item}>{item}</CategoryItem>
           ))}
         </Category>
         <Summary>{summary}</Summary>
