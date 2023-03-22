@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react'
+import React, { FunctionComponent, useMemo } from 'react'
 import styled from '@emotion/styled'
 import { PostListItemType } from 'types/PostItem.types'
 import PostItem from './PostItem'
@@ -18,7 +18,8 @@ export type PostType = {
   }
 }
 
-type PostListprops = {
+type PostListProps = {
+  selectedCategory: string
   posts: PostListItemType[]
 }
 
@@ -37,10 +38,28 @@ const PostListWrapper = styled.div`
   }
 `
 
-const PostList: FunctionComponent = function ({ posts }) {
+const PostList: FunctionComponent<PostListProps> = function ({
+  selectedCategory,
+  posts,
+}) {
+  const postListData = useMemo(
+    () =>
+      posts.filter(
+        ({
+          node: {
+            frontmatter: { categories },
+          },
+        }: PostListItemType) =>
+          selectedCategory !== 'All'
+            ? categories.includes(selectedCategory)
+            : true,
+      ),
+    [selectedCategory],
+  )
+
   return (
     <PostListWrapper>
-      {posts.map(({ node: { id, frontmatter } }: PostType) => (
+      {postListData.map(({ node: { id, frontmatter } }: PostListItemType) => (
         <PostItem {...frontmatter} link="https://www.google.co.kr/" key={id} />
       ))}
     </PostListWrapper>
