@@ -1,12 +1,5 @@
-/**
- * Implement Gatsby's Node APIs in this file.
- *
- * See: <https://www.gatsbyjs.com/docs/node-apis/>
- */
-
-// You can delete this file if you're not using it
-
 const path = require('path')
+const { createFilePath } = require(`gatsby-source-filesystem`)
 
 // Setup Import Alias
 exports.onCreateWebpackConfig = ({ getConfig, actions }) => {
@@ -22,4 +15,14 @@ exports.onCreateWebpackConfig = ({ getConfig, actions }) => {
       },
     },
   })
+}
+
+exports.onCreateNode = ({ node, getNode, action }) => {
+  const { onCreateNodeField } = actions
+
+  if (node.internal.type === `MarkdownRemark`) {
+    const slug = createFilePath({ node, getNode })
+
+    onCreateNodeField({ node, name: 'slug', value: slug })
+  }
 }
