@@ -56,7 +56,7 @@ const IndexPage: FunctionComponent<IndexPageProps> = function ({
             node: {
               frontmatter: { categories },
             },
-          }: PostType,
+          }: PostListItemType,
         ) => {
           categories.forEach(category => {
             if (list[category] === undefined) list[category] = 1
@@ -96,6 +96,9 @@ export const getPostList = graphql`
       edges {
         node {
           id
+          fields {
+            slug
+          }
           frontmatter {
             title
             summary
