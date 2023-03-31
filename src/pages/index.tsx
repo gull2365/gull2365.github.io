@@ -4,7 +4,7 @@ import GlobalStyle from 'components/Common/GlobalStyle'
 import Footer from 'components/Common/Footer'
 import Introduction from 'components/Main/Introduction'
 import CategoryList, { CategoryListProps } from 'components/Main/CategoryList'
-import PostList, { PostType } from 'components/Main/PostList'
+import PostList from 'components/Main/PostList'
 import { graphql } from 'gatsby'
 import { IGatsbyImageData } from 'gatsby-plugin-image'
 import { PostListItemType } from 'types/PostItem.types'
@@ -42,6 +42,7 @@ const IndexPage: FunctionComponent<IndexPageProps> = function ({
   },
 }) {
   const parsed: ParsedQuery<string> = queryString.parse(search)
+
   const selectedCategory: string =
     typeof parsed.category !== 'string' || !parsed.category
       ? 'All'
