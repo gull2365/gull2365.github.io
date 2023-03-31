@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useMemo } from 'react'
+import React, { FunctionComponent } from 'react'
 import styled from '@emotion/styled'
 import { PostListItemType } from 'types/PostItem.types'
 import PostItem from './PostItem'
@@ -52,7 +52,7 @@ const PostList: FunctionComponent<PostListProps> = function ({
 
   return (
     <PostListWrapper ref={containerRef}>
-      {posts.map(
+      {postList.map(
         ({
           node: {
             id,
