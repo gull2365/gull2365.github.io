@@ -1,7 +1,6 @@
 const path = require('path')
 const { createFilePath } = require(`gatsby-source-filesystem`)
 
-// Setup Import Alias
 exports.onCreateWebpackConfig = ({ getConfig, actions }) => {
   const output = getConfig().output || {}
 
@@ -16,8 +15,8 @@ exports.onCreateWebpackConfig = ({ getConfig, actions }) => {
     },
   })
 }
-
-exports.onCreateNode = ({ node, getNode, actions }) => {
+//  oncreateNode function을 allMarkdownRemark로 바꿔보면 해결된다해서 바꿔봄
+exports.allMarkdownRemark = ({ node, getNode, actions }) => {
   const { onCreateNodeField } = actions
 
   if (node.internal.type === `MarkdownRemark`) {
