@@ -15,22 +15,20 @@ exports.onCreateWebpackConfig = ({ getConfig, actions }) => {
     },
   })
 }
-//  oncreateNode function을 allMarkdownRemark로 바꿔보면 해결된다해서 바꿔봄
-exports.allMarkdownRemark = ({ node, getNode, actions }) => {
-  const { onCreateNodeField } = actions
+
+exports.onCreateNode = ({ node, getNode, actions }) => {
+  const { createNodeField } = actions
 
   if (node.internal.type === `MarkdownRemark`) {
     const slug = createFilePath({ node, getNode })
 
-    onCreateNodeField({ node, name: 'slug', value: slug })
+    createNodeField({ node, name: 'slug', value: slug })
   }
 }
 
-// Generate Post Page Through Markdown Data
 exports.createPages = async ({ actions, graphql, reporter }) => {
   const { createPage } = actions
 
-  // Get All Markdown File For Paging
   const queryAllMarkdownData = await graphql(
     `
       {
@@ -52,19 +50,16 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
     `,
   )
 
-  // Handling GraphQL Query Error
   if (queryAllMarkdownData.errors) {
     reporter.panicOnBuild(`Error while running query`)
     return
   }
 
-  // Import Post Template Component
   const PostTemplateComponent = path.resolve(
     __dirname,
     'src/templates/post_template.tsx',
   )
 
-  // Page Generating Function
   const generatePostPage = ({
     node: {
       fields: { slug },
@@ -79,6 +74,5 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
     createPage(pageOptions)
   }
 
-  // Generate Post Page And Passing Slug Props for Query
   queryAllMarkdownData.data.allMarkdownRemark.edges.forEach(generatePostPage)
 }
