@@ -1,7 +1,5 @@
 import React, { FunctionComponent, useMemo } from 'react'
 import styled from '@emotion/styled'
-import GlobalStyle from 'components/Common/GlobalStyle'
-import Footer from 'components/Common/Footer'
 import Introduction from 'components/Main/Introduction'
 import CategoryList, { CategoryListProps } from 'components/Main/CategoryList'
 import PostList, { PostType } from 'components/Main/PostList'
@@ -27,12 +25,6 @@ type IndexPageProps = {
   }
 }
 
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-`
-
 const IndexPage: FunctionComponent<IndexPageProps> = function ({
   location: { search },
   data: {
@@ -48,8 +40,8 @@ const IndexPage: FunctionComponent<IndexPageProps> = function ({
     typeof parsed.category !== 'string' || !parsed.category
       ? 'All'
       : parsed.category
-
-  const categoryList = useMemo(
+      
+      const categoryList = useMemo(
     () =>
       edges.reduce(
         (
@@ -73,7 +65,7 @@ const IndexPage: FunctionComponent<IndexPageProps> = function ({
       ),
     [],
   )
-
+ 
   return (
     <Template>
       <Introduction profileImage={gatsbyImageData} />
@@ -82,7 +74,6 @@ const IndexPage: FunctionComponent<IndexPageProps> = function ({
         categoryList={categoryList}
       />
       <PostList selectedCategory={selectedCategory} posts={edges} />
-      <Footer />
     </Template>
   )
 }
