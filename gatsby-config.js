@@ -7,6 +7,13 @@ module.exports = {
   },
   plugins: [
     {
+      resolve: 'gatsby-plugin-canonical-urls',
+      option: {
+        siteUrl: 'https://my-website.com',
+        stripQuerystring: true,
+      },
+    },
+    {
       resolve: 'gatsby-plugin-typescript',
       options: {
         isTSX: true,
