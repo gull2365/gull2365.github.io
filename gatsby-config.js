@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    title: `주니어 개발자의 개발 블로그`,
+    title: `Blog | Gull2365`,
     description: `주니어 개발자로서의 저를 표현한 블로그입니다.`,
     author: `Yochan`,
     siteUrl: 'https://my-website-link.com',
