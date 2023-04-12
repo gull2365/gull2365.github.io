@@ -13,7 +13,7 @@ const Title = styled.div`
   display: -webkit-box;
   overflow: hidden;
   overflow-wrap: break-word;
-  margin-top: auto;
+  margin-top: 140px;
   text-overflow: ellipsis;
   white-space: normal;
   -webkit-line-clamp: 2;
@@ -23,6 +23,7 @@ const Title = styled.div`
 
   @media (max-width: 768px) {
     font-size: 30px;
+    margin-top: 70px;
   }
 `
 
