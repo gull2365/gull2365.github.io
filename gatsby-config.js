@@ -3,9 +3,16 @@ module.exports = {
     title: `Blog | Gull2365`,
     description: `주니어 개발자로서의 저를 표현한 블로그입니다.`,
     author: `Yochan`,
-    siteUrl: 'https://my-website-link.com',
+    siteUrl: 'https://gull2365.github.io/',
   },
   plugins: [
+    {
+      resolve: 'gatsby-plugin-canonical-urls',
+      options: {
+        siteUrl: 'https://gull2365.github.io/',
+        stripQueryString: true,
+      },
+    },
     {
       resolve: 'gatsby-plugin-robots-txt',
       options: {
